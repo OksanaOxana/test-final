@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import MyListForADay from "./MyListForADay";
+import { useState } from 'react';
+import uuid from 'react-dom'
+import MyListTasks from './MyListTasks';
+
 
 function App() {
+  const [taskPlans, setTaskPlans] = useState([])
+  const addTask = () => {
+    const newTask = {
+      title: "Today I'll learn ",
+      id:uuid
+    }
+    setTaskPlans([newTask, ...taskPlans])
+    console.log(addTask);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <MyListForADay 
+      addTask={addTask} 
+      taskPlans={taskPlans}
+      />
+      <MyListTasks />
     </div>
-  );
+  )
 }
 
 export default App;
